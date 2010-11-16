@@ -1,0 +1,15 @@
+== Overview
+
+Yep, I'm going to write another pong clone...it happens every couple
+of years, with a different language, graphics library, etc.  Sometimes
+it sucks, sometimes it doesn't...the last one was quick, and written
+in C with SDL.
+
+== Features
+ 1. Paddles
+ 2. Ball
+ 3. Scoring
+ 4. Sounds
+ 5. Awesomeness
+
+
