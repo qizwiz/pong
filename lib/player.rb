@@ -2,9 +2,13 @@ class Player
   X_MAX = 640
   Y_MAX = 480
 
-  def initialize(window)
-    @image = Gosu::Image.new(window, "data/player-paddle.png", false)
-    @x = @y = 0.0
+  def initialize(window, ai=false)
+    if ai
+      @image = Gosu::Image.new(window, "data/ai-paddle.png", false)
+    else
+      @image = Gosu::Image.new(window, "data/player-paddle.png", false)
+    end
+      @x = @y = 0.0
   end
 
   def warp(x, y)

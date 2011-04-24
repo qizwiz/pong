@@ -16,8 +16,11 @@ class GameWindow < Gosu::Window
   def start_game
     @background_image = Gosu::Image.new(self, "data/playing-field.png", true)
 
-    @player = Player.new(self)
-    @player.warp(25, 75)
+    @red_player = Player.new(self, false)
+    @red_player.warp(25, 75)
+
+    @blue_player = Player.new(self, true)
+    @blue_player.warp(600, 75)
 
     @ball = Ball.new(self)
     @ball.warp(320, 240)
@@ -28,13 +31,23 @@ class GameWindow < Gosu::Window
   def update
     if @game_started
       if button_down? Gosu::Button::KbUp or button_down? Gosu::Button::GpUp
-        @player.move_up
+        @blue_player.move_up
       end
 
       if button_down? Gosu::Button::KbDown or button_down? Gosu::Button::GpDown
-        @player.move_down
+        @blue_player.move_down
       end
-      @player.move
+
+      if button_down? Gosu::Button::KbW
+        @red_player.move_up
+      end
+
+      if button_down? Gosu::Button::KbS
+        @red_player.move_down
+      end
+
+      @red_player.move
+      @blue_player.move
 
     else
       # we're in the splash screen, so handle the menu selection.
@@ -48,7 +61,8 @@ class GameWindow < Gosu::Window
 
   def draw
     if @game_started
-      @player.draw
+      @red_player.draw
+      @blue_player.draw
       @ball.draw
     end
     @background_image.draw(0, 0, 0);
